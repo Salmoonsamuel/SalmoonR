@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salmoon Samuel — IT Professional</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ── TOKENS ─────────────────────────────────────────── */
+        :root {
+            --bg: #0B0F1A;
+            --surface: #111827;
+            --surface2: #1C2333;
+            --border: #1E2D45;
+            --accent: #38BDF8;
+            /* sky-400 */
+            --accent2: #818CF8;
+            /* indigo-400 */
+            --text: #E2E8F0;
+            --muted: #64748B;
+            --success: #34D399;
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --radius: 10px;
+            --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-head);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── GRID NOISE BACKGROUND ──────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(56, 189, 248, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, .03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 5%;
+            background: rgba(11, 15, 26, .85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: .9rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: .05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .85rem;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: .8rem;
+            padding: 8px 18px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* ── HERO ─────────────────────────────────────────────── */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 80px;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, .12) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(129, 140, 248, .1) 0%, transparent 70%);
+            bottom: 0;
+            left: 10%;
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .8;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-mono);
+            font-size: .8rem;
+            color: var(--accent);
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-name {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            margin-bottom: 12px;
+        }
+
+        .hero-name span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            color: var(--muted);
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #94A3B8;
+            max-width: 560px;
+            margin-bottom: 48px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+            color: var(--bg);
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: .9rem;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .btn-primary:hover {
+            opacity: .88;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--font-head);
+            font-weight: 500;
+            font-size: .9rem;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color var(--transition), color var(--transition), transform var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(52, 211, 153, .1);
+            border: 1px solid rgba(52, 211, 153, .25);
+            color: var(--success);
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 32px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 1.6s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        /* ── SECTION WRAPPER ────────────────────────────────── */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 5%;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--accent);
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 520px;
+            margin-bottom: 56px;
+            line-height: 1.8;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 5%;
+        }
+
+        /* ── CERTS ROW ───────────────────────────────────────── */
+        #certs {
+            padding: 48px 5%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cert-tag {
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            white-space: nowrap;
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .cert-tag:hover {
+            border-color: var(--accent2);
+            color: var(--accent2);
+        }
+
+        .cert-label {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        /* ── SKILLS ─────────────────────────────────────────── */
+        #skills {
+            background: var(--surface);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: border-color var(--transition), transform var(--transition);
+            cursor: default;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, .15), rgba(129, 140, 248, .15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+
+        .skill-name {
+            font-size: .95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .skill-desc {
+            font-size: .8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── EXPERIENCE ─────────────────────────────────────── */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 56px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, .2);
+        }
+
+        .timeline-period {
+            font-family: var(--font-mono);
+            font-size: .72rem;
+            color: var(--accent);
+            letter-spacing: .08em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-role {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-company {
+            font-size: .9rem;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+        }
+
+        .timeline-bullets li {
+            font-size: .88rem;
+            color: #94A3B8;
+            line-height: 1.7;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .timeline-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent2);
+            font-size: .75rem;
+        }
+
+        /* ── STATS ───────────────────────────────────────────── */
+        #stats {
+            background: var(--surface2);
+            padding: 64px 5%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .stat-box {
+            background: var(--surface);
+            padding: 36px 28px;
+            text-align: center;
+            transition: background var(--transition);
+        }
+
+        .stat-box:hover {
+            background: var(--surface2);
+        }
+
+        .stat-num {
+            font-family: var(--font-mono);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: .8rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        /* ── CONTACT ─────────────────────────────────────────── */
+        #contact {
+            background: var(--surface);
+        }
+
+        .contact-card {
+            max-width: 640px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(56, 189, 248, .08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            background: rgba(56, 189, 248, .04);
+        }
+
+        .contact-link-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-link-info {
+            flex: 1;
+        }
+
+        .contact-link-label {
+            font-size: .75rem;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .contact-link-value {
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        .contact-link-arrow {
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────── */
+        footer {
+            padding: 32px 5%;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: .8rem;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: .8rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ── SCROLL REVEAL ───────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            #certs {
+                gap: 8px;
+            }
+
+            .contact-card {
+                padding: 28px 20px;
+            }
+
+            .stat-num {
+                font-size: 1.8rem;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ── CERTIFICATIONS ─────────────────────────────────── */
+        #certifications {
+            background: var(--bg);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color var(--transition), transform var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent2);
+            transform: translateY(-4px);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .cert-badge {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, .15), rgba(129, 140, 248, .2));
+            border: 1px solid rgba(56, 189, 248, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .cert-card-title {
+            font-size: .95rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text);
+        }
+
+        .cert-card-issuer {
+            font-size: .78rem;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            margin-top: 3px;
+        }
+
+        .cert-topics {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .cert-topics li {
+            font-size: .8rem;
+            color: var(--muted);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .cert-topics li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent2);
+            font-size: .7rem;
+        }
+
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid rgba(56, 189, 248, .25);
+            padding: 6px 14px;
+            border-radius: 100px;
+            align-self: flex-start;
+            margin-top: auto;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .cert-link:hover {
+            background: rgba(56, 189, 248, .1);
+        }
+
+        /* ── PROJECTS ────────────────────────────────────────── */
+        #projects {
+            background: var(--surface);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: var(--surface2);
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--surface2), var(--surface));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .project-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .project-type {
+            font-family: var(--font-mono);
+            font-size: .7rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent2);
+        }
+
+        .project-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            font-size: .83rem;
+            color: #94A3B8;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .project-tag {
+            font-family: var(--font-mono);
+            font-size: .68rem;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(129, 140, 248, .1);
+            border: 1px solid rgba(129, 140, 248, .2);
+            color: var(--accent2);
+        }
+
+        .project-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .project-link {
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap var(--transition);
+        }
+
+        .project-link:hover {
+            gap: 10px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#hero" class="nav-logo">SS<span style="color:var(--muted)"> / portfolio</span></a>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="mailto:salmoonsamuel@gmail.com" class="nav-cta">Hire me →</a>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div class="hero-inner">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Available for new opportunities
+            </div>
+            <div class="hero-eyebrow">IT Professional</div>
+            <h1 class="hero-name">Salmoon<br><span>Samuel</span></h1>
+            <p class="hero-title">System Administrator · Cloud & M365 Specialist</p>
+            <p class="hero-desc">
+                Azure-certified IT professional with 4+ years bridging cloud infrastructure,
+                Microsoft 365 administration, and end-user support. I keep systems running,
+                teams productive, and security tight.
+            </p>
+            <div class="hero-actions">
+                <a href="#experience" class="btn-primary">View Experience ↓</a>
+                <a href="mailto:salmoonsamuel@gmail.com" class="btn-secondary">📧 Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTS STRIP -->
+    <hr class="divider" />
+    <div id="certs">
+        <span class="cert-label">Certifications:</span>
+        <span class="cert-tag">AZ-900 Azure Fundamentals</span>
+        <span class="cert-tag">MS-900 Microsoft 365</span>
+        <span class="cert-tag">ServiceNow Administrator</span>
+        <span class="cert-tag">Google IT Support</span>
+        <span class="cert-tag">ITIL</span>
+        <span class="cert-tag">Front-End Web Dev</span>
+    </div>
+    <hr class="divider" />
+
+    <!-- STATS -->
+    <div id="stats">
+        <div class="stats-grid">
+            <div class="stat-box reveal">
+                <div class="stat-num" data-target="4">0</div>
+                <div class="stat-label">Years of IT<br>Experience</div>
+            </div>
+            <div class="stat-box reveal">
+                <div class="stat-num" data-target="30">0</div>
+                <div class="stat-label">Tickets Resolved<br>Daily (avg)</div>
+            </div>
+            <div class="stat-box reveal">
+                <div class="stat-num" data-target="5">0</div>
+                <div class="stat-label">Industry<br>Certifications</div>
+            </div>
+            <div class="stat-box reveal">
+                <div class="stat-num" data-target="3">0</div>
+                <div class="stat-label">Cloud Platforms<br>Managed</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title reveal">Technical Skills</h2>
+        <p class="section-sub reveal">A full-stack IT toolkit spanning cloud, identity, productivity, and support.</p>
+
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <div class="skill-icon">☁️</div>
+                <div class="skill-name">Azure Administration</div>
+                <div class="skill-desc">Azure AD, App Services, VNet, Entra ID, cloud environment setup and monitoring.
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🏢</div>
+                <div class="skill-name">Microsoft 365</div>
+                <div class="skill-desc">Full M365 suite management — Teams, Outlook, SharePoint, and user provisioning.
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🗂️</div>
+                <div class="skill-name">SharePoint Admin</div>
+                <div class="skill-desc">Site creation, administration, ticketing platforms, and document management.
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🎫</div>
+                <div class="skill-name">ServiceNow</div>
+                <div class="skill-desc">Certified admin. Incident management, workflow creation, end-user IT resolution.
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🔐</div>
+                <div class="skill-name">Active Directory</div>
+                <div class="skill-desc">User & group management, access control, onboarding and offboarding.</div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🛡️</div>
+                <div class="skill-name">Security & Compliance</div>
+                <div class="skill-desc">Endpoint security, policy enforcement, and compliance documentation.</div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">📊</div>
+                <div class="skill-name">Data & Reporting</div>
+                <div class="skill-desc">Excel, SQL, database monitoring, asset management and reporting workflows.</div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🌐</div>
+                <div class="skill-name">Network Support</div>
+                <div class="skill-desc">WiFi/Ethernet troubleshooting, VNet configuration, connectivity resolution.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-label">Career</div>
+        <h2 class="section-title reveal">Work Experience</h2>
+        <p class="section-sub reveal">From enterprise tech support to cloud system administration.</p>
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">March 2025 — Present</div>
+                <div class="timeline-role">System Administrator</div>
+                <div class="timeline-company">Idea Entity</div>
+                <ul class="timeline-bullets">
+                    <li>Manage Azure cloud and on-premises environments — monitoring, maintenance, and security
+                        compliance.</li>
+                    <li>Administer Microsoft Entra ID, M365 platform, and SharePoint sites for the organization.</li>
+                    <li>Onboard new employees into Active Directory; prepare assets (devices, accounts, cloud access).
+                    </li>
+                    <li>Resolve end-user tickets via SharePoint ticketing platform; troubleshoot conference room AV
+                        equipment.</li>
+                    <li>Monitor database backups and manage company assets including servers, laptops, and printers.
+                    </li>
+                    <li>Prepare cloud environments for developer teams and support infrastructure scaling needs.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot" style="background:var(--accent2);box-shadow:0 0 0 3px rgba(129,140,248,.2)">
+                </div>
+                <div class="timeline-period">November 2021 — December 2024</div>
+                <div class="timeline-role">Senior Tech Support / Administration</div>
+                <div class="timeline-company">Infosys Ltd</div>
+                <ul class="timeline-bullets">
+                    <li>Served as ServiceNow Admin — resolving 25–30 tickets daily including login issues, device
+                        drivers, connectivity, and hardware.</li>
+                    <li>Managed finance and HR applications including Workday; supported employees across phone,
+                        in-person, and remote channels.</li>
+                    <li>Resolved complex Microsoft Teams and Outlook problems: calendar sync, audio/video, notification
+                        failures, and threading issues.</li>
+                    <li>Categorized and documented all incidents for knowledge base and reporting.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot" style="background:var(--success);box-shadow:0 0 0 3px rgba(52,211,153,.2)">
+                </div>
+                <div class="timeline-period">June 2021 — December 2021</div>
+                <div class="timeline-role">ServiceNow Administration Apprenticeship</div>
+                <div class="timeline-company">U.S. Government Program</div>
+                <ul class="timeline-bullets">
+                    <li>Completed a full ServiceNow Administration apprenticeship, earning the Certified ServiceNow
+                        Administrator credential.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot" style="background:var(--muted);box-shadow:0 0 0 3px rgba(100,116,139,.2)">
+                </div>
+                <div class="timeline-period">June 2018 — April 2020</div>
+                <div class="timeline-role">Marketing Coordinator</div>
+                <div class="timeline-company">Hard Rock, Atlantic City</div>
+                <ul class="timeline-bullets">
+                    <li>Data entry, member signup, and guest support for loyalty membership programs.</li>
+                    <li>Participated in live marketing events including slot tournaments and bingo.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+        <div class="section-label">Credentials</div>
+        <h2 class="section-title reveal">Certifications & Training</h2>
+        <p class="section-sub reveal">Industry-recognized credentials across cloud, IT support, development, and
+            administration.</p>
+
+        <div class="cert-grid">
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">🎫</div>
+                    <div>
+                        <div class="cert-card-title">Certified ServiceNow System Administrator</div>
+                        <div class="cert-card-issuer">ServiceNow — Mainline Certification</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Platform Overview, Navigation & Access</li>
+                    <li>List/Filters, Forms, Tasks & Reporting</li>
+                    <li>Knowledge Management & Service Catalog</li>
+                    <li>Virtual Agent & App Development</li>
+                </ul>
+                <a class="cert-link"
+                    href="https://salmoonsamuel.github.io/Salmoon-resume/certificates/ServiceNow Certified System Administrator.pdf"
+                    target="_blank" rel="noopener">📄 View Certificate →</a>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">☁️</div>
+                    <div>
+                        <div class="cert-card-title">AZ-900 Azure Fundamentals</div>
+                        <div class="cert-card-issuer">Microsoft Certified</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Azure cloud concepts and architecture</li>
+                    <li>Azure services: compute, networking, storage</li>
+                    <li>Security, compliance & identity in Azure</li>
+                    <li>Azure pricing, SLAs, and lifecycle</li>
+                </ul>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">🏢</div>
+                    <div>
+                        <div class="cert-card-title">MS-900 Microsoft 365 Fundamentals</div>
+                        <div class="cert-card-issuer">Microsoft 365 Certified</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Microsoft 365 productivity & collaboration</li>
+                    <li>Security and compliance capabilities</li>
+                    <li>Cloud deployment and licensing models</li>
+                </ul>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">🔧</div>
+                    <div>
+                        <div class="cert-card-title">IBM IT Support Specialist Pre-Apprenticeship</div>
+                        <div class="cert-card-issuer">Pluralsight · Franklin Apprenticeships</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Customer support skills & escalation handling</li>
+                    <li>Hardware, networking & troubleshooting</li>
+                    <li>IIS Administration & Windows desktop management</li>
+                    <li>Security fundamentals, IAM & cryptography</li>
+                </ul>
+                <a class="cert-link"
+                    href="https://salmoonsamuel.github.io/Salmoon-resume/certificates/IBM_IT_Support_Specialist_Pre_apprenticeship_Certificate_Badge20220809-46-dihhj4.pdf"
+                    target="_blank" rel="noopener">📄 View Certificate →</a>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">🌐</div>
+                    <div>
+                        <div class="cert-card-title">Google IT Support Professional Certificate</div>
+                        <div class="cert-card-issuer">Google · Coursera</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Technical Support Fundamentals</li>
+                    <li>Computer Networking (Bits & Bytes)</li>
+                    <li>Operating Systems & Power User skills</li>
+                    <li>Sysadmin, IT Infrastructure & IT Security</li>
+                </ul>
+                <a class="cert-link"
+                    href="https://salmoonsamuel.github.io/Salmoon-resume/certificates/Google IT Support.pdf"
+                    target="_blank" rel="noopener">📄 View Certificate →</a>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">💻</div>
+                    <div>
+                        <div class="cert-card-title">Full-Stack Web Development</div>
+                        <div class="cert-card-issuer">NuCamp Coding Bootcamp · Mar–Jun 2021</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Bootstrap 4 — Responsive front-end UI</li>
+                    <li>React & React Native — Dynamic interfaces</li>
+                    <li>Node.js, Express & MongoDB — Back-end APIs</li>
+                    <li>JWT & Passport authentication</li>
+                </ul>
+                <a class="cert-link"
+                    href="https://salmoonsamuel.github.io/Salmoon-resume/certificates/Backend_with_NodeJS-Full_Stack_Web_and_Mobile_Development_Certificate_8531.pdf"
+                    target="_blank" rel="noopener">📄 Full-Stack Cert →</a>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">🐧</div>
+                    <div>
+                        <div class="cert-card-title">The UNIX Workbench</div>
+                        <div class="cert-card-issuer">Coursera · Johns Hopkins University</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>Unix basics: searches, pipes, configuration</li>
+                    <li>Bash scripting: loops, arrays, functions</li>
+                    <li>Git & GitHub: branching, diffs, collaboration</li>
+                    <li>Cloud computing: automation & server management</li>
+                </ul>
+            </div>
+
+            <div class="cert-card reveal">
+                <div class="cert-card-header">
+                    <div class="cert-badge">⚙️</div>
+                    <div>
+                        <div class="cert-card-title">ServiceNow Apprenticeship Bootcamp</div>
+                        <div class="cert-card-issuer">U.S. Government Program · Jul–Sep 2021</div>
+                    </div>
+                </div>
+                <ul class="cert-topics">
+                    <li>ITIL 3/4 lifecycles, Agile & Scrum methodology</li>
+                    <li>ServiceNow: Incident, Service Catalog, Knowledge Base</li>
+                    <li>ATF — Automated Test Framework</li>
+                    <li>Flow Designer, scripting & development</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title reveal">Projects</h2>
+        <p class="section-sub reveal">Real-world builds spanning IT administration, web development, and app creation.
+        </p>
+
+        <div class="projects-grid">
+
+            <div class="project-card reveal">
+                <img class="project-img" src="https://salmoonsamuel.github.io/Salmoon-resume/assets/images/board.png"
+                    alt="Jira Project Board"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="project-img-placeholder" style="display:none">📋</div>
+                <div class="project-body">
+                    <span class="project-type">Project Management</span>
+                    <div class="project-title">Agile Task Board — Jira</div>
+                    <p class="project-desc">Designed and managed a full Jira task board using Agile methodology. Set up
+                        the product backlog, created user stories, organized sprints, assigned tasks, and configured
+                        story point estimates.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Jira</span>
+                        <span class="project-tag">Agile</span>
+                        <span class="project-tag">Scrum</span>
+                        <span class="project-tag">Sprint Planning</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-img-placeholder">🧾</div>
+                <div class="project-body">
+                    <span class="project-type">ServiceNow Development</span>
+                    <div class="project-title">Sales App — ServiceNow Developer Instance</div>
+                    <p class="project-desc">Built a full retail sales application on a ServiceNow Developer Instance.
+                        Created custom tables, notifications, business rules, client scripts, and user policies.
+                        Generated automated reports for store data.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">ServiceNow</span>
+                        <span class="project-tag">Business Rules</span>
+                        <span class="project-tag">Client Script</span>
+                        <span class="project-tag">Reporting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <img class="project-img"
+                    src="https://salmoonsamuel.github.io/Salmoon-resume/assets/images/ssfoodprojectpic.png"
+                    alt="Food Delivery App"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="project-img-placeholder" style="display:none">🍔</div>
+                <div class="project-body">
+                    <span class="project-type">Full-Stack Web App</span>
+                    <div class="project-title">SS Food Delivery App</div>
+                    <p class="project-desc">Responsive food delivery web app with dynamic forms, Npm package management,
+                        and third-party icon integrations. Fully mobile-first layout built with Bootstrap 5.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML/CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Bootstrap 5</span>
+                        <span class="project-tag">Npm</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link" href="https://ssfood-delivery-app.netlify.app" target="_blank"
+                        rel="noopener">Live Demo →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <img class="project-img"
+                    src="https://salmoonsamuel.github.io/Salmoon-resume/assets/images/Chuck-Norris-PNG-Image.png"
+                    alt="Random Jokes App"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="project-img-placeholder" style="display:none">😂</div>
+                <div class="project-body">
+                    <span class="project-type">API Integration</span>
+                    <div class="project-title">Random Jokes App</div>
+                    <p class="project-desc">Responsive web app that fetches and displays random jokes via a public REST
+                        API. Demonstrates live API consumption with a clean, dynamic UI.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML/CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">REST API</span>
+                        <span class="project-tag">GitHub Pages</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link" href="https://salmoonsamuel.github.io/Random-Jokes/" target="_blank"
+                        rel="noopener">Live Demo →</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <img class="project-img" src="https://salmoonsamuel.github.io/Salmoon-resume/assets/images/mindGame.png"
+                    alt="Number Guess Game"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="project-img-placeholder" style="display:none">🧠</div>
+                <div class="project-body">
+                    <span class="project-type">Interactive Game</span>
+                    <div class="project-title">Number Guess Mind Game</div>
+                    <p class="project-desc">Browser-based number guessing game with responsive design, real-time
+                        feedback, and dynamic UI interactions. Built with vanilla JavaScript and Bootstrap 5.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML/CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Bootstrap 5</span>
+                        <span class="project-tag">Netlify</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a class="project-link" href="https://mind-game.netlify.app/" target="_blank" rel="noopener">Live
+                        Demo →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CONTACT -->
+    <section id="contact" id="about">
+        <div class="section-label">Let's Connect</div>
+        <h2 class="section-title reveal">Get in Touch</h2>
+        <p class="section-sub reveal">Open to System Administrator, IT Admin, and Cloud Support roles. Feel free to
+            reach out.</p>
+
+        <div class="contact-card reveal">
+            <p style="color:var(--muted);font-size:.9rem;line-height:1.7;">
+                I'm Salmoon Samuel — an Azure-certified system administrator based in the U.S.
+                Whether you need someone to manage your cloud infrastructure, support your team on M365,
+                or build robust IT workflows, I'd love to talk.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:salmoonsamuel@gmail.com" class="contact-link">
+                    <div class="contact-link-icon">📧</div>
+                    <div class="contact-link-info">
+                        <span class="contact-link-label">Email</span>
+                        <span class="contact-link-value">salmoonsamuel@gmail.com</span>
+                    </div>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+
+                <a href="tel:7186744990" class="contact-link">
+                    <div class="contact-link-icon">📞</div>
+                    <div class="contact-link-info">
+                        <span class="contact-link-label">Phone</span>
+                        <span class="contact-link-value">(718) 674-4990</span>
+                    </div>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+
+                <a href="https://salmoonsamuel.github.io/Salmoon-resume/" target="_blank" rel="noopener"
+                    class="contact-link">
+                    <div class="contact-link-icon">🌐</div>
+                    <div class="contact-link-info">
+                        <span class="contact-link-label">Portfolio / GitHub</span>
+                        <span class="contact-link-value">salmoonsamuel.github.io</span>
+                    </div>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-copy">© 2025 Salmoon Samuel. All rights reserved.</span>
+        <div class="footer-links">
+            <a href="#hero">Back to top ↑</a>
+            <a href="mailto:salmoonsamuel@gmail.com">Email</a>
+            <a href="https://salmoonsamuel.github.io/Salmoon-resume/" target="_blank">Portfolio</a>
+        </div>
+    </footer>
+
+    <script>
+        /* ── SCROLL REVEAL ──────────────────────────── */
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 60);
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+
+        /* ── COUNT-UP NUMBERS ───────────────────────── */
+        const statNums = document.querySelectorAll('.stat-num[data-target]');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = +el.dataset.target;
+                const suffix = el.dataset.suffix || '+';
+                let start = 0;
+                const duration = 1200;
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(eased * target) + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        statNums.forEach(el => countObserver.observe(el));
+
+        /* ── ACTIVE NAV LINK ────────────────────────── */
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 140) current = s.id;
+            });
+            navLinks.forEach(a => {
+                a.style.color = a.getAttribute('href') === '#' + current
+                    ? 'var(--accent)' : '';
+            });
+        });
+    </script>
+</body>
+
+</html>
